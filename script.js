@@ -4,8 +4,11 @@ const profileCard = document.getElementById('profile-card');
 const playerName = document.getElementById('player-name');
 const playerTeam = document.getElementById('player-team');
 const playerPosition = document.getElementById('player-position');
+const playerJersey = document.getElementById('player-jersey');
+const playerHeight = document.getElementById('player-height');
+const playerWeight = document.getElementById('player-weight');
 
-// Your official Balldontlie API Key
+// Balldontlie API Key
 const API_KEY = '7f9384c4-597d-4012-9a18-dc5486a2b1cd'; 
 
 async function fetchNBAPlayer() {
@@ -13,7 +16,7 @@ async function fetchNBAPlayer() {
         // Generate a random ID between 1 and 400 to pull a random player
         const randomPlayerId = Math.floor(Math.random() * 400) + 1;
         
-        // Fetch from the Balldontlie API
+     
         const response = await fetch(`https://api.balldontlie.io/v1/players/${randomPlayerId}`, {
             method: 'GET',
             headers: {
@@ -30,8 +33,17 @@ async function fetchNBAPlayer() {
         playerName.innerText = `${player.first_name} ${player.last_name}`;
         playerTeam.innerText = `${player.team.full_name} (${player.team.abbreviation})`;
         playerPosition.innerText = player.position ? `Position: ${player.position}` : 'Position: Unknown';
+        // Update the basic info
+        playerName.innerText = `${player.first_name} ${player.last_name}`;
+        playerTeam.innerText = `${player.team.full_name} (${player.team.abbreviation})`;
+        playerPosition.innerText = player.position ? `Position: ${player.position}` : 'Position: Unknown';
 
-        // Play the Anime.js Animation!
+        
+        playerJersey.innerText = player.jersey_number ? `#${player.jersey_number}` : 'N/A';
+        playerHeight.innerText = player.height ? player.height : 'N/A';
+        playerWeight.innerText = player.weight ? `${player.weight} lbs` : 'N/A';
+
+        //Anime.js Animation!
         anime({
             targets: '.profile-card',
             translateY: [50, 0], 
