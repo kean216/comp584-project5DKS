@@ -52,7 +52,7 @@ async function fetchNBAPlayer() {
         playerHeight.innerText = player.height ? player.height : 'N/A';
         playerWeight.innerText = player.weight ? `${player.weight} lbs` : 'N/A';
 
-        // NEW: Update Team Badges (This data comes free with the first API call!)
+        // Update Team Badges 
         if (player.team) {
             teamCity.innerText = player.team.city || 'N/A';
             teamConf.innerText = player.team.conference || 'N/A';
