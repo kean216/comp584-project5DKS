@@ -6,9 +6,8 @@
 }
 
 body {
-    background-color: #1e1e2f;
+    background: linear-gradient(135deg, #1e1e2f 0%, #2a2a4a 100%);
     color: white;
-    /* Flexbox to center everything  */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +51,6 @@ body {
     width: 350px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     
-    /* CSS Grid inside the card to stack the image and text */
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -66,7 +64,7 @@ body {
     border-radius: 50%;
     border: 4px solid #ff4757;
     object-fit: cover;
-    background-color: white; /* Adds a white background behind the transparent logo */
+    background-color: white;
 }
 
 .profile-info h2 {
@@ -80,20 +78,10 @@ body {
     margin-bottom: 5px;
 }
 
-/* Update the body background to a cool gradient (You can replace the existing body rule with this) */
-body {
-    background: linear-gradient(135deg, #1e1e2f 0%, #2a2a4a 100%);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* NEW: Styling for the extra stats */
+/* 6-Badge Stats Grid */
 .stats-grid {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-top: 15px;
     padding-top: 15px;
@@ -102,9 +90,9 @@ body {
 
 .stat-badge {
     background-color: #1e1e2f;
-    padding: 10px;
+    padding: 10px 5px;
     border-radius: 8px;
-    width: 30%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
