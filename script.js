@@ -18,6 +18,17 @@ const playerAst = document.getElementById('player-ast');
 // Your official Balldontlie API Key
 const API_KEY = '7f9384c4-597d-4012-9a18-dc5486a2b1cd'; 
 
+// NEW: We separated the animation so it ALWAYS runs
+function showCard() {
+    anime({
+        targets: '.profile-card',
+        translateY: [50, 0], 
+        opacity: [0, 1],     
+        duration: 800,       
+        easing: 'easeOutElastic(1, .6)' 
+    });
+}
+
 async function fetchNBAPlayer() {
     try {
         // 1. Generate a random ID and fetch the player's bio data
@@ -32,18 +43,21 @@ async function fetchNBAPlayer() {
         const bioJson = await bioResponse.json();
         const player = bioJson.data;
         
-        // 2. Fetch the player's performance stats using their new ID (Checking the 2023 season)
+        // 2. Fetch the player's performance stats safely
         const statsResponse = await fetch(`https://api.balldontlie.io/v1/season_averages?season=2023&player_ids[]=${player.id}`, {
             method: 'GET',
             headers: { 'Authorization': API_KEY }
         });
         
-        const statsJson = await statsResponse.json();
-        const stats = statsJson.data[0]; // Gets the first result
+        let stats = null;
+        if (statsResponse.ok) {
+            const statsJson = await statsResponse.json();
+            stats = statsJson.data[0]; 
+        }
 
-        // 3. Update the Basic Info
+        // 3. Update the Basic Info (SAFELY checking if they have a team)
         playerName.innerText = `${player.first_name} ${player.last_name}`;
-        playerTeam.innerText = `${player.team.full_name} (${player.team.abbreviation})`;
+        playerTeam.innerText = player.team ? `${player.team.full_name} (${player.team.abbreviation})` : 'No Team Data';
         playerPosition.innerText = player.position ? `Position: ${player.position}` : 'Position: Unknown';
 
         // 4. Update Bio Badges
@@ -62,15 +76,6 @@ async function fetchNBAPlayer() {
             playerAst.innerText = "N/A";
         }
 
-        // 6. Play the Anime.js Animation!
-        anime({
-            targets: '.profile-card',
-            translateY: [50, 0], 
-            opacity: [0, 1],     
-            duration: 800,       
-            easing: 'easeOutElastic(1, .6)' 
-        });
-
     } catch (error) {
         console.error("Error fetching data:", error);
         playerName.innerText = "Error loading player.";
@@ -85,6 +90,10 @@ async function fetchNBAPlayer() {
         playerJersey.innerText = emptyState;
         playerHeight.innerText = emptyState;
         playerWeight.innerText = emptyState;
+    } finally {
+        // 6. Play the Anime.js Animation! 
+        // Putting this in 'finally' guarantees the card appears, even if the data fetch fails.
+        showCard();
     }
 }
 
