@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1e1e2f;
+    color: white;
+    /* Flexbox to center everything  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Button Styling */
+.btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff4757;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #ff6b81;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* The Player Card Styling */
+.profile-card {
+    background-color: #2f3542;
+    padding: 30px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    /* CSS Grid inside the card to stack the image and text */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #ff4757;
+    object-fit: cover;
+    background-color: white; /* Adds a white background behind the transparent logo */
+}
+
+.profile-info h2 {
+    margin-bottom: 5px;
+    color: #f1f2f6;
+}
+
+.profile-info p {
+    color: #a4b0be;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
