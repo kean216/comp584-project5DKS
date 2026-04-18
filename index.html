@@ -12,9 +12,31 @@
     <div class="wrapper">
         <button id="generate-btn" class="btn">Generate Random NBA Player</button>
         
-        <div class="profile-card" id="profile-card" style="opacity: 0;">
+       <div class="profile-card" id="profile-card" style="opacity: 0;">
             <img id="user-image" src="https://cdn-icons-png.flaticon.com/512/889/889442.png" alt="NBA Player" class="profile-img">
             
+            <div class="profile-info">
+                <h2 id="player-name">Loading...</h2>
+                <p id="player-team" style="font-weight: bold; color: #ff4757;">...</p>
+                <p id="player-position" style="margin-bottom: 15px;">...</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-badge">
+                        <span id="player-jersey" class="stat-value">--</span>
+                        <span class="stat-label">Jersey</span>
+                    </div>
+                    <div class="stat-badge">
+                        <span id="player-height" class="stat-value">--</span>
+                        <span class="stat-label">Height</span>
+                    </div>
+                    <div class="stat-badge">
+                        <span id="player-weight" class="stat-value">--</span>
+                        <span class="stat-label">Weight</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
             <div class="profile-info">
                 <h2 id="player-name">Loading...</h2>
                 <p id="player-team" style="font-weight: bold; color: #ff4757;">...</p>
